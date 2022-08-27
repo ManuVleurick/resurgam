@@ -1,0 +1,47 @@
+{
+    "books": [
+        {
+            "book_id": 12,
+            "title": "Eerste boek",
+            "author": "Mr. Wiwi",
+            "year": "2002-10-15",
+            "genre": "Horror",
+            "description": "Een boke over Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.",
+            "language": "English",
+            "ISBN": "978-3-16-148410-0",
+            "pages": 300,
+            "score": 8,
+            "status": "Read"
+        },
+        {
+            "book_id": 205,
+            "title": "tweede boek",
+            "author": "Mr. Lodm",
+            "year": "2022-08-25",
+            "genre": "Drama",
+            "description": "Een boke over Lorem Ipsum is slechts een proeftekst uit het drukkerij- en zetterijwezen. Lorem Ipsum is de standaard proeftekst in deze bedrijfstak sinds de 16e eeuw, toen een onbekende drukker een zethaak met letters nam en ze door elkaar husselde om een font-catalogus te maken. Het heeft niet alleen vijf eeuwen overleefd maar is ook, vrijwel onveranderd, overgenomen in elektronische letterzetting. Het is in de jaren '60 populair geworden met de introductie van Letraset vellen met Lorem Ipsum passages en meer recentelijk door desktop publishing software zoals Aldus PageMaker die versies van Lorem Ipsum bevatten.",
+            "language": "Nederlands",
+            "ISBN": "978-1-56619-909-4 ",
+            "pages": 506,
+            "score": 6.5
+        }
+    ],
+    "info": [
+        {
+            "book_id": 12,
+            "review_score": 5.62,
+            "review": "een review",
+            "bib_place": "2de 23.2 Lodm",
+            "tags": "dark,horror,poetic",
+            "date_gelezen": "2022-08-15"
+        },
+        {
+            "book_id": 205,
+            "review_score": 1.23,
+            "review": "een tweede review",
+            "bib_place": "1de 123.21 Wiwi",
+            "tags": "dark,horror,poetic",
+            "date_gelezen": "2022-08-13"
+        }
+    ]
+}
