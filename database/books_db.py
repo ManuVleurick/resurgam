@@ -4,10 +4,8 @@ import json
 import random
 
 PATH_DB = "./resources/books.db"
-NAME_DB = 'book'
 
-def generate_id():
-    return random.randint(100000000,999999999)
+
     
 
 class BooksDatabase():
@@ -16,24 +14,25 @@ class BooksDatabase():
         try:
             print('Start connection database...')
             self.db = sqlite3.connect(PATH_DB)
-            print(f'Connection {NAME_DB} database made!')
+            print(f'Connection book database made!')
         except Error as e:
-            print(f'Connection to {NAME_DB} database failed!\nError: {e}')
+            print(f'Connection to book database failed!\nError: {e}')
 
         self.make_db()
         
     #book=dict en info=dict
-    def insert_book(self,book,info):
+    def insert_book(self,book):
         mycursor = self.db.cursor()
         
-        data = [value for value in book.values()]
-        id = generate_id()
-        data.insert(0,id)
-        print(f'Data: {data}')
-        print(f'type: {type(data)}')
-        mycursor.executemany(f'INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',data)
 
-        self.db.commit()
+        data = [value for value in book.get_values()]
+        print(f'Data: {data}')
+        #array not supported in sqlite so convert to string
+        data[14] = " ".join(data[14])
+        print(f'tags: {data[14]}')
+        mycursor.execute(f'INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',data)
+
+        #self.db.commit()
         mycursor.close()
 
     def delete_book(self,book_id):
@@ -59,39 +58,8 @@ class BooksDatabase():
     def make_db(self):
         mycursor = self.db.cursor()
         #books table
-        mycursor.execute("CREATE TABLE IF NOT EXISTS book (book_id INT PRIMARY KEY,title TEXT NOT NULL,author TEXT NOT NULL,year DATE NOT NULL,genre TEXT NOT NULL,description TEXT,language TEXT NOT NULL,ISBN TEXT,pages INT,score REAL,status TEXT DEFAULT 'Plan To Read')")
-        #info table
-        mycursor.execute("CREATE TABLE IF NOT EXISTS info (book_id INT PRIMARY KEY,review_score REAL,review TEXT,bib_place TEXT,tags TEXT,date_gelezen DATE,FOREIGN KEY (book_id) REFERENCES book (book_id))")
+        mycursor.execute("CREATE TABLE IF NOT EXISTS book (book_id INT PRIMARY KEY,title TEXT NOT NULL,author TEXT NOT NULL,year DATE NOT NULL,genre TEXT NOT NULL,description TEXT,language TEXT NOT NULL,ISBN TEXT,pages INT,score REAL,status TEXT,review_score REAL,review TEXT,bib_place TEXT,tags TEXT,date_gelezen DATE)")
 
         self.db.commit()
         mycursor.close()
-        print(f'Database {NAME_DB} build!')
-
-    def fill_db_mock(self):
-        with open('./testing/mock_data_books.json') as file:
-            obj = json.load(file)
-            file.close()
-
-            mycursor = self.db.cursor()
-
-            for book in obj['books']:
-                if 'status' in book:
-                    data = [
-                        (book["book_id"],book["title"],book["author"],book["year"],book["genre"],book["description"],book["language"],book["ISBN"],book["pages"],book["score"],book["status"]),
-                    ]
-                    mycursor.executemany(f'INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',data)
-                else:
-                    data = [
-                        (book["book_id"],book["title"],book["author"],book["year"],book["genre"],book["description"],book["language"],book["ISBN"],book["pages"],book["score"],None),
-                    ]
-                    mycursor.executemany(f'INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',data)
-
-            
-            #self.db.commit()
-
-            mycursor.execute('SELECT * from book')
-            iets = mycursor.fetchall()
-
-            print(iets)
-
-            mycursor.close()
+        print(f'Database book build!')

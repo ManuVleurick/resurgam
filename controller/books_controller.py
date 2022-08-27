@@ -5,8 +5,8 @@ class BooksController:
     def __init__(self):
         self.books_repo = BooksRepo()
 
-    def add_book(self,book,info):
-        return self.books_repo.add_book(book,info)
+    def add_book(self,book):
+        return self.books_repo.add_book(book)
 
     def delete_book(self,book_id):
         return self.books_repo.delete_book(book_id)

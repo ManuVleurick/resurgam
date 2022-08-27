@@ -1,8 +1,10 @@
 from datetime import date
+import random
 
 class Book:
 
-    def __init__(self,title,author,year,genre,description,language,ISBN=,pages,score=,review_score=,review=,bib_place=,tags,date_gelezen=,status='Plan To Read'):
+    def __init__(self,title,author,year,genre,description,language,pages,tags,score=None,review_score=None,review=None,bib_place=None,ISBN=None,date_gelezen=None,status='Plan To Read'):
+        self.book_id = self.generate_id()
         self.set_title(title)
         self.set_author(author)
         self.set_year(year)
@@ -18,6 +20,12 @@ class Book:
         self.set_bib_place(bib_place)
         self.set_tags(tags)
         self.set_date_gelezen(date_gelezen)
+
+    def generate_id(self):
+        return random.randint(100000000,999999999)
+
+    def get_book_id(self):
+        return self.book_id
 
     def set_title(self,title):
         if type(title) == str:
@@ -154,6 +162,31 @@ class Book:
     def get_date_gelezen(self):
         return self.date_gelezen
 
-    def values(self):
-        data = [self.get_title(),self.get_author(),self.get_year(),self.get_genre(),self.get_description(),self.get_language(),self.get_ISBN(),self.get_pages(),self.get_score(),self.get_status()]
+    def to_string(self):
+        string = ''
+        string += f'Book ID: {self.get_book_id()}\n'
+        string += f'Title: {self.get_title()}\n'
+        string += f'Author: {self.get_author()}\n'
+        string += f'Year: {self.get_year()}\n'
+        string += f'Genre: {self.get_genre()}\n'
+        string += f'Description: {self.get_description()}\n'
+        string += f'Language: {self.get_language()}\n'
+        string += f'ISBN: {self.get_ISBN()}\n'
+        string += f'Pages: {self.get_title()}\n'
+        string += f'Score: {self.get_score()}\n'
+        string += f'Status: {self.get_status()}\n'
+        string += f'Review Score: {self.get_review_score()}\n'
+        string += f'Review: {self.get_review()}\n'
+        string += f'Bib plaats: {self.get_bib_place()}\n'
+        string += f'Tags: {self.get_tags()}\n'
+        string += f'Date gelezen: {self.get_date_gelezen()}\n'
+        return string
+
+    def get_values(self):
+        data = [self.get_book_id(),self.get_title(),self.get_author(),self.get_year(),self.get_genre(),self.get_description(),self.get_language(),self.get_ISBN(),self.get_pages(),self.get_score(),self.get_status()]
+        data.append(self.get_review_score())
+        data.append(self.get_review())
+        data.append(self.get_bib_place())
+        data.append(self.get_tags())
+        data.append(self.get_date_gelezen())
         return data

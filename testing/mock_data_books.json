@@ -11,7 +11,12 @@
             "ISBN": "978-3-16-148410-0",
             "pages": 300,
             "score": 8,
-            "status": "Read"
+            "status": "Read",
+            "review_score": 5.62,
+            "review": "een review",
+            "bib_place": "2de 23.2 Lodm",
+            "tags": "dark,horror,poetic",
+            "date_gelezen": "2022-08-15"
         },
         {
             "book_id": 205,
@@ -23,24 +28,11 @@
             "language": "Nederlands",
             "ISBN": "978-1-56619-909-4 ",
             "pages": 506,
-            "score": 6.5
-        }
-    ],
-    "info": [
-        {
-            "book_id": 12,
-            "review_score": 5.62,
-            "review": "een review",
-            "bib_place": "2de 23.2 Lodm",
-            "tags": "dark,horror,poetic",
-            "date_gelezen": "2022-08-15"
-        },
-        {
-            "book_id": 205,
+            "score": 6.5,
             "review_score": 1.23,
             "review": "een tweede review",
             "bib_place": "1de 123.21 Wiwi",
-            "tags": "dark,horror,poetic",
+            "tags": "light",
             "date_gelezen": "2022-08-13"
         }
     ]

@@ -4,12 +4,15 @@ class BooksRepo:
 
     def __init__(self):
         self.books_db = BooksDatabase()
-        #dict zoals book_id:(book,info)
-        self.books = self.books_db.get_all_books()
+        #array of books
+        #self.books = self.books_db.get_all_books()
+        self.books = {}
 
-    def add_book(self,book,info):
-        self.books_db.insert_book(book,info)
-        self.books[book.book_id]=(book,info)
+    def add_book(self,book):
+        self.books_db.insert_book(book)
+        print(f'book_id={book.get_book_id()}')
+        print(f'{book.to_string()}')
+        self.books[book.get_book_id()]=book
         return self.books
 
     def delete_book(self,book_id):
