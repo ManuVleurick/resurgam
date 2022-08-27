@@ -23,16 +23,13 @@ class BooksDatabase():
     #book=dict en info=dict
     def insert_book(self,book):
         mycursor = self.db.cursor()
-        
 
         data = [value for value in book.get_values()]
-        print(f'Data: {data}')
-        #array not supported in sqlite so convert to string
+        #tags array not supported in sqlite so convert to string
         data[14] = " ".join(data[14])
-        print(f'tags: {data[14]}')
         mycursor.execute(f'INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',data)
 
-        #self.db.commit()
+        self.db.commit()
         mycursor.close()
 
     def delete_book(self,book_id):
@@ -43,14 +40,22 @@ class BooksDatabase():
         pass
 
     def get_book(self,book_id):
-        pass
+        mycursor = self.db.cursor()
+        mycursor.execute(f'SELECT * FROM book WHERE book_id={book_id}')
+        data = mycursor.fetchall()
+        print(f'Data : {data}')
+        mycursor.close()
+        return data
 
     def console_command(self,sql_statement):
         pass
 
-    #array with tuples with Book en info
     def get_all_books(self):
-        pass
+        mycursor = self.db.cursor()
+        mycursor.execute(f'SELECT * FROM book')
+        data = mycursor.fetchall()
+        mycursor.close()
+        return data
 
     def close_db(self):
         self.db.close()
@@ -62,4 +67,3 @@ class BooksDatabase():
 
         self.db.commit()
         mycursor.close()
-        print(f'Database book build!')
