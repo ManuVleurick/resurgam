@@ -145,10 +145,10 @@ class Book:
         return self.bib_place
 
     def set_tags(self,tags):
-        if type(tags) == list:
+        if type(tags) == str:
             self.tags = tags
         else:
-            raise Exception(f'tags has the wrong type must be array but is {type(tags)}')
+            raise Exception(f'tags has the wrong type must be str but is {type(tags)}')
 
     def get_tags(self):
         return self.tags

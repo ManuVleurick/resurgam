@@ -25,19 +25,22 @@ class BooksDatabase():
         mycursor = self.db.cursor()
 
         data = [value for value in book.get_values()]
-        #tags array not supported in sqlite so convert to string
-        data[14] = " ".join(data[14])
         mycursor.execute(f'INSERT INTO book VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',data)
 
         self.db.commit()
         mycursor.close()
 
     def delete_book(self,book_id):
-        pass
+        mycursor = self.db.cursor()
+        mycursor.execute(f'DELETE FROM book WHERE book_id={book_id}')
 
-    #dict met alle attributen
-    def update_book(self,book,info):
-        pass
+        self.db.commit()
+        mycursor.close()
+
+    def update_book(self,book):
+        mycursor = self.db.cursor()
+        mycursor.execute(f'UPDATE book SET  WHERE book_id={book.book_id}')
+        mycursor.close()
 
     def get_book(self,book_id):
         mycursor = self.db.cursor()
@@ -47,8 +50,13 @@ class BooksDatabase():
         mycursor.close()
         return data
 
-    def console_command(self,sql_statement):
-        pass
+    def console_command(self,sql_statement,expect_return):
+        mycursor = self.db.cursor()
+        mycursor.execute(f'{sql_statement}')
+        if expect_return:
+            data = mycursor.fetchall()
+            return data
+        self.db.commit()
 
     def get_all_books(self):
         mycursor = self.db.cursor()
