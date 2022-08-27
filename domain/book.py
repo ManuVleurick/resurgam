@@ -100,7 +100,7 @@ class Book:
         return self.pages
 
     def set_score(self,score):
-        if ((type(score) == float) & (score>=0 & (score<=10))):
+        if (score==None) or ((type(score) == float) & (score>=0 & (score<=10))):
             self.score = score
         else:
             raise Exception(f'score has the wrong type or is not between 0 and 10')
@@ -109,7 +109,7 @@ class Book:
         return self.score
 
     def set_status(self,status):
-        if type(status) == str:
+        if (type(status) == str) | (status == None):
             self.status = status
         else:
             raise Exception(f'status has the wrong type must be str but is {type(status)}')
@@ -118,7 +118,7 @@ class Book:
         return self.status
 
     def set_review_score(self,review_score):
-        if type(review_score) == float:
+        if (review_score==None) or (type(review_score) == float):
             self.review_score = review_score
         else:
             raise Exception(f'review_score has the wrong type must be float but is {type(review_score)}')
@@ -127,7 +127,7 @@ class Book:
         return self.review_score
 
     def set_review(self,review):
-        if type(review) == str:
+        if (review==None) or (type(review) == str):
             self.review = review
         else:
             raise Exception(f'review has the wrong type must be str but is {type(review)}')
@@ -136,7 +136,7 @@ class Book:
         return self.review
 
     def set_bib_place(self,bib_place):
-        if type(bib_place) == str:
+        if (bib_place==None) or (type(bib_place) == str):
             self.bib_place = bib_place
         else:
             raise Exception(f'bib_place has the wrong type must be str but is {type(bib_place)}')
@@ -154,7 +154,7 @@ class Book:
         return self.tags
 
     def set_date_gelezen(self,date_gelezen):
-        if type(date_gelezen) == str:
+        if (date_gelezen==None) or (type(date_gelezen) == str):
             self.date_gelezen = date_gelezen
         else:
             raise Exception(f'date_gelezen has the wrong type must be str but is {type(date_gelezen)}')
