@@ -1,6 +1,8 @@
 from datetime import date
 import random
 
+LEN_ID = 9
+
 class Book:
 
     def __init__(self,title,author,year,genre,description,language,pages,tags,book_id=None,score=None,review_score=None,review=None,bib_place=None,ISBN=None,date_gelezen=None,status='Plan To Read'):
@@ -22,8 +24,11 @@ class Book:
         self.set_date_gelezen(date_gelezen)
 
     def generate_id(self):
-        chars = ['0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN']
-        random.
+        chars = list('0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN')
+        id = ''
+        for x in range(LEN_ID):
+           id += random.choice(chars)
+        return id
         #return random.randint(100000000,999999999)
 
     def get_book_id(self):
