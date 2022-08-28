@@ -1,7 +1,6 @@
 from datetime import date
 import random
-
-LEN_ID = 9
+from config.glob_vars import LEN_ID
 
 class Book:
 
@@ -27,7 +26,7 @@ class Book:
         chars = list('0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN')
         id = ''
         for x in range(LEN_ID):
-           id += random.choice(chars)
+            id += random.choice(chars)
         return id
         #return random.randint(100000000,999999999)
 

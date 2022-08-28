@@ -1,26 +1,20 @@
 import sqlite3
 from sqlite3 import Error
-import json
-import random
-
-PATH_DB = "./resources/books.db"
-
-
-    
+from config.loggers import logger_db
+from config.glob_vars import PATH_DB
 
 class BooksDatabase():
     
     def __init__(self):
         try:
-            print('Start connection database...')
+            logger_db.info('Start connection database...')
             self.db = sqlite3.connect(PATH_DB)
-            print(f'Connection book database made!')
+            logger_db.info(f'Connection book database made!')
         except Error as e:
-            print(f'Connection to book database failed!\nError: {e}')
+            logger_db.error(f'Connection to book database failed!\nError: {e}')
 
         self.make_db()
         
-    #book=dict en info=dict
     def insert_book(self,book):
         mycursor = self.db.cursor()
 
@@ -37,9 +31,16 @@ class BooksDatabase():
         self.db.commit()
         mycursor.close()
 
-    def update_book(self,book):
+    def update_book(self,book_id,dict_args):
         mycursor = self.db.cursor()
-        mycursor.execute(f'UPDATE book SET  WHERE book_id={book.book_id}')
+        set_sql = ''
+        for arg,val in dict_args.items():
+            if type(val) == str:
+                set_sql += f"{arg} = \'{val}\',"
+            else:
+                set_sql += f"{arg} = {val},"
+        set_sql = set_sql[:-1]
+        mycursor.execute(f'UPDATE book SET {set_sql} WHERE book_id={book_id}')
         mycursor.close()
 
     def get_book(self,book_id):
@@ -67,6 +68,7 @@ class BooksDatabase():
 
     def close_db(self):
         self.db.close()
+        logger_db.warning('Database book closed')
 
     def make_db(self):
         mycursor = self.db.cursor()

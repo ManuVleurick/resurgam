@@ -14,8 +14,8 @@ class BooksController:
         self.books_db.delete_book(book_id)
         return self.get_all_books()
 
-    def update_book(self,book):
-        self.books_db.update_book(book)
+    def update_book(self,book_id,dict_args):
+        self.books_db.update_book(book_id,dict_args)
         return self.get_all_books()
 
     def get_book(self,book_id):
@@ -35,7 +35,7 @@ class BooksController:
     def close_db(self):
         self.books_db.close_db()
 
-    def command(self,sql,expect_return):
+    def command(self,sql,expect_return=False):
         if expect_return:
             return self.books_db.console_command(sql,expect_return)
         self.books_db.console_command(sql)
