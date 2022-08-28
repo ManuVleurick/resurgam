@@ -13,9 +13,8 @@ class BooksGUI:
         review_score,review,bib_place,tags,date_gelezen = 4.58,'Goeie booek','1de 25.5 bruh','Horror Poezie','1992-12-26'
         book = Book(title=title,author=author,year=year,genre=genre,description=description,language=language,ISBN=ISBN,pages=pages,score=score,status=status,review_score=review_score,review=review,bib_place=bib_place,tags=tags,date_gelezen=date_gelezen)
 
-        
-        books = self.books_con.get_all_books()
+        books = self.books_con.delete_book(603352192)
         for b in books:
             print(b.to_string())
-        #book1 = self.books_con.get_book(991494239)
+
         

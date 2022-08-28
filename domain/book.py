@@ -3,8 +3,8 @@ import random
 
 class Book:
 
-    def __init__(self,title,author,year,genre,description,language,pages,tags,score=None,review_score=None,review=None,bib_place=None,ISBN=None,date_gelezen=None,status='Plan To Read'):
-        self.book_id = self.generate_id()
+    def __init__(self,title,author,year,genre,description,language,pages,tags,book_id=None,score=None,review_score=None,review=None,bib_place=None,ISBN=None,date_gelezen=None,status='Plan To Read'):
+        self.set_book_id(book_id)
         self.set_title(title)
         self.set_author(author)
         self.set_year(year)
@@ -26,6 +26,12 @@ class Book:
 
     def get_book_id(self):
         return self.book_id
+
+    def set_book_id(self,book_id):
+        if book_id == None:
+            self.book_id = self.generate_id()
+        else:
+            self.book_id = book_id
 
     def set_title(self,title):
         if type(title) == str:

@@ -45,18 +45,18 @@ class BooksDatabase():
     def get_book(self,book_id):
         mycursor = self.db.cursor()
         mycursor.execute(f'SELECT * FROM book WHERE book_id={book_id}')
-        data = mycursor.fetchall()
-        print(f'Data : {data}')
+        data = mycursor.fetchone()
         mycursor.close()
         return data
 
-    def console_command(self,sql_statement,expect_return):
+    def console_command(self,sql_statement,expect_return=False):
         mycursor = self.db.cursor()
         mycursor.execute(f'{sql_statement}')
         if expect_return:
             data = mycursor.fetchall()
             return data
         self.db.commit()
+        mycursor.close()
 
     def get_all_books(self):
         mycursor = self.db.cursor()
