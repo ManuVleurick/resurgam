@@ -71,7 +71,7 @@ class BooksDatabase():
     def make_db(self):
         mycursor = self.db.cursor()
         #books table
-        mycursor.execute("CREATE TABLE IF NOT EXISTS book (book_id INT PRIMARY KEY,title TEXT NOT NULL,author TEXT NOT NULL,year DATE NOT NULL,genre TEXT NOT NULL,description TEXT,language TEXT NOT NULL,ISBN TEXT,pages INT,score REAL,status TEXT,review_score REAL,review TEXT,bib_place TEXT,tags TEXT,date_gelezen DATE)")
+        mycursor.execute("CREATE TABLE IF NOT EXISTS book (book_id TEXT PRIMARY KEY,title TEXT NOT NULL,author TEXT NOT NULL,year DATE NOT NULL,genre TEXT NOT NULL,description TEXT,language TEXT NOT NULL,ISBN TEXT,pages INT,score REAL,status TEXT,review_score REAL,review TEXT,bib_place TEXT,tags TEXT,date_gelezen DATE)")
 
         self.db.commit()
         mycursor.close()
