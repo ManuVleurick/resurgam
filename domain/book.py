@@ -22,7 +22,9 @@ class Book:
         self.set_date_gelezen(date_gelezen)
 
     def generate_id(self):
-        return random.randint(100000000,999999999)
+        chars = ['0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN']
+        random.
+        #return random.randint(100000000,999999999)
 
     def get_book_id(self):
         return self.book_id
