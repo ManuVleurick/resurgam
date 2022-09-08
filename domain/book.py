@@ -1,10 +1,9 @@
-from datetime import date
 import random
 from config.glob_vars import LEN_ID
 
 class Book:
 
-    def __init__(self,title,author,year,genre,description,language,pages,tags,book_id=None,score=None,review_score=None,review=None,bib_place=None,ISBN=None,date_gelezen=None,status='Plan To Read'):
+    def __init__(self,title,author,year,genre,description,language,pages,tags=None,book_id=None,score=None,date_gelezen=None,status='Plan To Read'):
         self.set_book_id(book_id)
         self.set_title(title)
         self.set_author(author)
@@ -12,13 +11,9 @@ class Book:
         self.set_genre(genre)
         self.set_description(description)
         self.set_language(language)
-        self.set_ISBN(ISBN)
         self.set_pages(pages)
         self.set_score(score)
         self.set_status(status)
-        self.set_review_score(review_score)
-        self.set_review(review)
-        self.set_bib_place(bib_place)
         self.set_tags(tags)
         self.set_date_gelezen(date_gelezen)
 
@@ -58,10 +53,10 @@ class Book:
         return self.author
 
     def set_year(self,year):
-        if (type(year) == int) & (year<=date.today().year & year>= 0):
+        if (type(year) == str):
             self.year = year
         else:
-            raise Exception(f'year has the wrong type or wrong year must be int but is {type(year)}')
+            raise Exception(f'year has the wrong type or wrong year must be str but is {type(year)}')
 
     def get_year(self):
         return self.year
@@ -88,13 +83,13 @@ class Book:
         if type(language) == str:
             self.language = language
         else:
-            raise Exception(f'language has the wrong type must be str but is {type(language)}')
+            raise Exception(f'language has the wrong type must be str but is {type(language)}:{language}')
 
     def get_language(self):
         return self.language
 
     def set_ISBN(self,ISBN):
-        if type(ISBN) == str:
+        if (type(ISBN) == str) or (ISBN == None):
             self.ISBN = ISBN
         else:
             raise Exception(f'ISBN has the wrong type must be str but is {type(ISBN)}')
@@ -112,10 +107,10 @@ class Book:
         return self.pages
 
     def set_score(self,score):
-        if (score==None) or ((type(score) == float) & (score>=0 & (score<=10))):
+        if (score==None) or (((type(score) == float) or (type(score)==int)) & (score>=0 & (score<=10))):
             self.score = score
         else:
-            raise Exception(f'score has the wrong type or is not between 0 and 10')
+            raise Exception(f'score has the wrong type: or is not between 0 and 10')
 
     def get_score(self):
         return self.score
@@ -129,33 +124,7 @@ class Book:
     def get_status(self):
         return self.status
 
-    def set_review_score(self,review_score):
-        if (review_score==None) or (type(review_score) == float):
-            self.review_score = review_score
-        else:
-            raise Exception(f'review_score has the wrong type must be float but is {type(review_score)}')
-
-    def get_review_score(self):
-        return self.review_score
-
-    def set_review(self,review):
-        if (review==None) or (type(review) == str):
-            self.review = review
-        else:
-            raise Exception(f'review has the wrong type must be str but is {type(review)}')
-
-    def get_review(self):
-        return self.review
-
-    def set_bib_place(self,bib_place):
-        if (bib_place==None) or (type(bib_place) == str):
-            self.bib_place = bib_place
-        else:
-            raise Exception(f'bib_place has the wrong type must be str but is {type(bib_place)}')
-
-    def get_bib_place(self):
-        return self.bib_place
-
+    #tags seperated with ,
     def set_tags(self,tags):
         if type(tags) == str:
             self.tags = tags
@@ -176,29 +145,22 @@ class Book:
 
     def to_string(self):
         string = ''
-        string += f'Book ID: {self.get_book_id()}\n'
+        string += f'Book ID: {self.get_book_id() if not self.get_book_id()==None else "Geen boek ID gegeven"}\n'
         string += f'Title: {self.get_title()}\n'
         string += f'Author: {self.get_author()}\n'
         string += f'Year: {self.get_year()}\n'
         string += f'Genre: {self.get_genre()}\n'
         string += f'Description: {self.get_description()}\n'
         string += f'Language: {self.get_language()}\n'
-        string += f'ISBN: {self.get_ISBN()}\n'
-        string += f'Pages: {self.get_title()}\n'
-        string += f'Score: {self.get_score()}\n'
+        string += f'Pages: {self.get_pages()}\n'
+        string += f'Score: {self.get_score() if not self.get_score()==None else "Geen score gegeven"}\n'
         string += f'Status: {self.get_status()}\n'
-        string += f'Review Score: {self.get_review_score()}\n'
-        string += f'Review: {self.get_review()}\n'
-        string += f'Bib plaats: {self.get_bib_place()}\n'
-        string += f'Tags: {self.get_tags()}\n'
-        string += f'Date gelezen: {self.get_date_gelezen()}\n'
+        string += f'Tags: {self.get_tags() if not self.get_tags()==None else "Geen tags gegeven"}\n'
+        string += f'Date gelezen: {self.get_date_gelezen() if not self.get_date_gelezen()==None else "Geen datum gelezen gegeven"}\n'
         return string
 
     def get_values(self):
-        data = [self.get_book_id(),self.get_title(),self.get_author(),self.get_year(),self.get_genre(),self.get_description(),self.get_language(),self.get_ISBN(),self.get_pages(),self.get_score(),self.get_status()]
-        data.append(self.get_review_score())
-        data.append(self.get_review())
-        data.append(self.get_bib_place())
+        data = [self.get_book_id(),self.get_title(),self.get_author(),self.get_year(),self.get_genre(),self.get_description(),self.get_language(),self.get_pages(),self.get_score(),self.get_status()]
         data.append(self.get_tags())
         data.append(self.get_date_gelezen())
         return data
