@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vragen_style.css') }}">
+</head>
+<body>
+    <a id="back" href="{{ url_for('home') }}">Back</a>
+    <div id="vragen">
+        Vragen
+        {% for vraag in vragen %}
+        {% set vraag_id=vraag.get_vraag_id() %}
+        <div class="vraag">
+            <h1 class="vraag_naam">{{ vraag.get_vraag() }}</h1>
+            <p class="vraag_description">{{ vraag.get_description() }}</p>
+            <p class="vraag_onderwerpen">Onderwerpen: {{ vraag.get_onderwerpen() }}</p>
+            <p class="vraag_aantal">{{ vraag.get_aantal() }} aantal keer beantwoord</p>
+            <p class="vraag_aantal_correct">{{ vraag.get_aantal_correct() }} aantal keer correct</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+</head>
+<body>
+    <nav>
+        <p id="quiz_naam">{{ quiz_naam }}</p>
+        <p id="vraagnr">{{ vraagnr }}/{{ len_vragen }}</p>
+    </nav>
+    <div id="vraag">
+        <h2 id="vraag">{{ vraag.get_vraag() }}</h2>
+        <form method="POST">
+            <input name="antwoord" type="text">
+        </form>
+    </div>
+</body>
+</html>

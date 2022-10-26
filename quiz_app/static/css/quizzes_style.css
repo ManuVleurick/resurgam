@@ -1,0 +1,54 @@
+body {
+    background-color: lightskyblue;
+}
+
+div#quizzes {
+    font-size: 30px;
+    font-weight: bolder;
+    padding: 3%;
+}
+
+div.quiz {
+    margin: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: small;
+    font-weight: 400;
+    border-style: solid;
+    border-radius: 2mm;
+    border-color: black;
+    border-width: 1px;
+}
+
+.quiz_naam {
+    text-align: center;
+    font-size: bolder;
+}
+
+.quiz_link {
+    text-decoration: none;
+    color: inherit;
+}
+
+a#back {
+    float: right;
+    text-decoration: dashed;
+    border-style: solid;
+    border-radius: 2mm;
+    border-color: black;
+    border-width: 1px;
+    font: bold 24px Arial;
+    text-decoration: none;
+    background-color: rgb(225, 237, 217);
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #090000;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
+}
+
+a#back:hover {
+    background-color: rgb(31, 36, 27);
+    color:rgb(225, 237, 217)
+}

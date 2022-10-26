@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quizzes_style.css') }}">
+</head>
+<body>
+    <a id="back" href="{{ url_for('home') }}">Back</a>
+    <div id="quizzes">
+        Quizzes
+        {% for quiz in quizzes %}
+        {% set quiz_id=quiz.get_quiz_id() %}
+        <a href="{{ url_for('quiz_start',quiz_id=quiz_id) }}" class="quiz_link">
+        <div class="quiz">
+            <h1 class="quiz_naam">{{ quiz.get_naam() }}</h1>
+            <p class="quiz_description">{{ quiz.get_description() }}</p>
+            <p class="quiz_onderwerpen">Onderwerpen: {{ quiz.get_onderwerpen() }}</p>
+            <p class="quiz_gemid_score">Gemiddelde score: {{ quiz.get_gemid_score() }}/10</p>
+            <p class="quiz_aantal_keer_gedaan">{{ quiz.get_aantal_keer_gedaan() }} keer gedaan</p>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+    <a href="{{ url_for('home') }}">Back</a>
+</body>
+</html>

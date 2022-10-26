@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz_start_style.css') }}">
+</head>
+<body>
+    <a id="back" href="{{ url_for('quizzes') }}">Back</a>
+    <div id="quiz">
+        <h1 class="quiz_naam">{{ quiz.get_naam() }}</h1>
+        <p class="quiz_description">{{ quiz.get_description() }}</p>
+        <p class="quiz_onderwerpen">{{ quiz.get_onderwerpen() }}</p>
+        <p class="quiz_gemid_score">{{ quiz.get_gemid_score() }}/10</p>
+        <p class="quiz_aantal_keer_gedaan">{{ quiz.get_aantal_keer_gedaan() }}</p>
+    </div>
+    {% if vragen|length>0 %}
+        {% for vraag in vragen %}
+        <div class="vraag">
+            <h3 class="vraag_naam">{{vraag.get_vraag()}}</h3>
+        </div>
+        {% endfor %}
+        <a id="start_btn" href="{{ url_for('quiz_starting',quiz_id=vragen[0].get_quiz_id()) }}">Start</a>
+    {% else %}
+        <div>Geen vragen in deze quiz</div>
+    {% endif %}
+</body>
+</html>
