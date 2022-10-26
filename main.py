@@ -1,5 +1,4 @@
 from book_database_app.gui.books_gui import BooksGUI
-from quiz_app.gui.quiz_gui import QuizGUI
 import pyinputplus as pyip
 import os
 
